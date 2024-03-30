@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
-import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 
@@ -23,12 +23,14 @@ const initialValues = {
   number: "",
 };
 
-const ContactForm = ({ onAddContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    onAddContact({ ...values, id: nanoid() });
+    dispatch(addContact(values.name, values.number));
     actions.resetForm();
   };
 
@@ -60,6 +62,7 @@ const ContactForm = ({ onAddContact }) => {
             type="text"
             name="number"
             id={numberFieldId}
+            placeholder="123-45-67"
           />
           <ErrorMessage
             name="number"
@@ -73,8 +76,6 @@ const ContactForm = ({ onAddContact }) => {
   );
 };
 
-ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired,
-};
+
 
 export default ContactForm;

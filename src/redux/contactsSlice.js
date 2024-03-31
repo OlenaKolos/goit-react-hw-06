@@ -4,7 +4,7 @@ import contacts from "../components/Contact/contacts.json";
 const contactsSlice = createSlice({
   name: "contacts",
   initialState: {
-    contacts,
+    items: contacts,
   },
 
   reducers: {

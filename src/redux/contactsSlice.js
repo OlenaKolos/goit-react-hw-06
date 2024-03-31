@@ -2,7 +2,12 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: [],
+  initialState: [
+    { id: "1111", name: "Rosie Simpson", number: "459-12-56" },
+    { id: "222", name: "Hermione Kline", number: "443-89-12" },
+    { id: "333", name: "Eden Clements", number: "645-17-79" },
+    { id: "444", name: "Annie Copeland", number: "227-91-26" },
+  ],
   reducers: {
     addContact: {
       reducer(state, action) {
